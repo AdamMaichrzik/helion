@@ -1,0 +1,32 @@
+[
+    {
+        "ident": "A",
+        "tytul": "Aktywna ciąża dla bystrzaków",
+        "liczbastron": "384",
+        "datawydania": "2008-05-14"
+    },
+    {
+        "ident": "B",
+        "tytul": "lgorytmy dla bystrzaków",
+        "liczbastron": "424",
+        "datawydania": "2020-01-31"
+    },
+    {
+        "ident": "C",
+        "tytul": "Anatomia i fizjologia dla bystrzaków",
+        "liczbastron": "376",
+        "datawydania": "2009-03-18"
+    },
+    {
+        "ident": "D",
+        "tytul": "ngielski dla bystrzaków",
+        "liczbastron": "325",
+        "datawydania": "2017-08-30"
+    },
+    {
+        "ident": "F",
+        "tytul": "Wiedzmin",
+        "liczbastron": "312",
+        "datawydania": "2019-08-30"
+    }
+]

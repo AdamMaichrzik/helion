@@ -1,17 +1,104 @@
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Helion Website</title>
 	</head>
 	<body>
-        <div style="width: 100%; height: 100%;" id="test"></div>
-		<script type="text/javascript" src="file.json"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<input
+			type="text"
+			id="myInput"
+			onkeyup="myFunction()"
+			placeholder="Search for names.."
+			title="Type in a name"
+		/>
+		<table id="myTable">
+			<tbody>
+				<tr>
+					<th>Ident</th>
+					<th>Tytul</th>
+					<th>Liczba stron</th>
+					<th>Data wydania</th>
+				</tr>
+			</tbody>
+
+			<tbody></tbody>
+		</table>
+
 		<script>
-            var mydata = JSON.parse(file);
-			document.getElementById("test").innerHTML = mydata.ident;
-            
+			var JSONItems = [];
+			var liczbyStron = [];
+
+			function showTable() {
+				$.getJSON("books.json", function (data) {
+					JSONItems = data;
+
+					var tr;
+					for (var i = 0; i < JSONItems.length; i++) {
+						tr = $("<tr/>");
+						tr.append("<td>" + data[i].ident + "</td>");
+						tr.append("<td>" + data[i].tytul + "</td>");
+						tr.append("<td>" + data[i].liczbastron + "</td>");
+						tr.append("<td>" + data[i].datawydania + "</td>");
+						$("table").append(tr);
+					}
+				});
+			}
+
+			showTable();
+
+			const getCellValue = (tr, idx) =>
+				tr.children[idx].innerText || tr.children[idx].textContent;
+
+			const comparer = (idx, asc) => (a, b) =>
+				((v1, v2) =>
+					v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+						? v1 - v2
+						: v1.toString().localeCompare(v2))(
+					getCellValue(asc ? a : b, idx),
+					getCellValue(asc ? b : a, idx)
+				);
+
+			// do the work...
+			document.querySelectorAll("th").forEach((th) =>
+				th.addEventListener("click", () => {
+					const table = th.closest("table");
+					Array.from(table.querySelectorAll("tr:nth-child(n+2)"))
+						.sort(
+							comparer(
+								Array.from(th.parentNode.children).indexOf(th),
+								(this.asc = !this.asc)
+							)
+						)
+						.forEach((tr) => table.appendChild(tr));
+				})
+			);
+
+			function myFunction() {
+				var input, filter, table, tr, td, cell, i, j;
+				input = document.getElementById("myInput");
+				filter = input.value.toUpperCase();
+				table = document.getElementById("myTable");
+				tr = table.getElementsByTagName("tr");
+				for (i = 1; i < tr.length; i++) {
+					// Hide the row initially.
+					tr[i].style.display = "none";
+
+					td = tr[i].getElementsByTagName("td");
+					for (var j = 0; j < td.length; j++) {
+						cell = tr[i].getElementsByTagName("td")[j];
+						if (cell) {
+							if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+								tr[i].style.display = "";
+								break;
+							}
+						}
+					}
+				}
+			}
 		</script>
 	</body>
 </html>
