@@ -1,32 +1,32 @@
 [
     {
-        "ident": "A",
+        "ident": "AKCIAZ",
         "tytul": "Aktywna ciąża dla bystrzaków",
         "liczbastron": "384",
         "datawydania": "2008-05-14"
     },
     {
-        "ident": "B",
+        "ident": "AKGIBY",
         "tytul": "lgorytmy dla bystrzaków",
         "liczbastron": "424",
         "datawydania": "2020-01-31"
     },
     {
-        "ident": "C",
+        "ident": "ALGOBY",
         "tytul": "Anatomia i fizjologia dla bystrzaków",
         "liczbastron": "376",
         "datawydania": "2009-03-18"
     },
     {
-        "ident": "D",
+        "ident": "ANFIBY",
         "tytul": "ngielski dla bystrzaków",
         "liczbastron": "325",
         "datawydania": "2017-08-30"
     },
     {
-        "ident": "F",
-        "tytul": "Wiedzmin",
-        "liczbastron": "312",
-        "datawydania": "2019-08-30"
+        "ident": "ANGBYS",
+        "tytul": "Analiza techniczna dla bystrzaków",
+        "liczbastron": "360",
+        "datawydania": "2012-03-16"
     }
 ]
