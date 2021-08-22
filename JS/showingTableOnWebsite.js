@@ -1,5 +1,5 @@
 function showTable() {
-    $.getJSON("JSONTableFromXML.json", function (data) {
+    $.getJSON("../JSON/JSONTableFromXML.json", function (data) {
         JSONItems = data;
         var tr;
         for (var i = 0; i < JSONItems.length; i++) {
