@@ -24,6 +24,9 @@
 		/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"/>
+		<script src="filteringTableByInput.js"></script>
+		<script src="showingTableOnWebsite.js"></script>
+		<script src="sortingTableOnColumnClick.js"></script>
 	</head>
 	<body>
 		<div class="container mt-3 text-center">
@@ -61,69 +64,13 @@
 
 		<script>
 			var JSONItems = [];
-			function showTable() {
-				$.getJSON("JSONTableFromXML.json", function (data) {
-					JSONItems = data;
-					var tr;
-					for (var i = 0; i < JSONItems.length; i++) {
-						tr = $("<tr/>");
-						tr.append("<td>" + data[i].ident + "</td>");
-						tr.append("<td>" + data[i].tytul + "</td>");
-						tr.append("<td>" + data[i].liczbastron + "</td>");
-						tr.append("<td>" + data[i].datawydania + "</td>");
-						$("table").append(tr);
-					}
-				});
-			}
-			/* Sorting column on click*/
-			const getCellValue = (tr, idx) =>
-				tr.children[idx].innerText || tr.children[idx].textContent;
-
-			const comparer = (idx, asc) => (a, b) =>
-				((v1, v2) =>
-					v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
-						? v1 - v2
-						: v1.toString().localeCompare(v2))(
-					getCellValue(asc ? a : b, idx),
-					getCellValue(asc ? b : a, idx)
-				);
-
-			document.querySelectorAll("th").forEach((th) =>
-				th.addEventListener("click", () => {
-					const table = th.closest("table");
-					Array.from(table.querySelectorAll("tr:nth-child(n+2)"))
-						.sort(
-							comparer(
-								Array.from(th.parentNode.children).indexOf(th),
-								(this.asc = !this.asc)
-							)
-						)
-						.forEach((tr) => table.appendChild(tr));
-				})
-			);
-
-			function filteringTable() {
-				var input, filter, table, tr, td, cell, i, j;
-				input = document.getElementById("myInput");
-				filter = input.value.toUpperCase();
-				table = document.getElementById("tableWithData");
-				tr = table.getElementsByTagName("tr");
-				for (i = 1; i < tr.length; i++) {
-					tr[i].style.display = "none";
-
-					td = tr[i].getElementsByTagName("td");
-					for (var j = 0; j < td.length; j++) {
-						cell = tr[i].getElementsByTagName("td")[j];
-						if (cell) {
-							if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
-								tr[i].style.display = "";
-								break;
-							}
-						}
-					}
-				}
-			}
-
+			//Showing the table on the website
+			showTable();
+			/* Sorting table on column header click*/
+			sortOnColumnClick();
+			//Input with filtering table by word 
+			filteringTable();
+			//Showing the table on the website 
 			showTable();
 		</script>
 		<!-- Optional JavaScript -->
